@@ -185,7 +185,7 @@ defineCustomFlag name' defQ argHelp readQ showQ description =
      let dataName = mkName $ "HFlag_" ++ name
      let dataConstrName = mkName $ "HFlagC_" ++ name
      -- Note: support for splicing inside [d| |] would make all this a lot nicer
-     dataDec <- dataD (cxt []) dataName [] [normalC dataConstrName []] []
+     dataDec <- dataD (cxt []) dataName [] Nothing [normalC dataConstrName []] (cxt [])
      instanceDec <- instanceD
                     (cxt [])
                     (appT (conT ''Flag) (conT dataName))
